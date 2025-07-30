@@ -9,7 +9,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: _HomeView(), bottomNavigationBar: CustomBottomNavigation(),);
+    return const Scaffold(
+      body: _HomeView(),
+      bottomNavigationBar: CustomBottomNavigation(),
+    );
   }
 }
 
@@ -30,13 +33,18 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   Widget build(BuildContext context) {
     final slideshowMovies = ref.watch(moviesSlideshowProvider);
-    // final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     // if(nowPlayingMovies.isEmpty) return CircularProgressIndicator();
     return Column(
       children: [
         const CustomAppbar(),
-        MoviesSlideshow(movies: slideshowMovies)
+        MoviesSlideshow(movies: slideshowMovies),
 
+        MovieHorizontalListview(
+          movies: nowPlayingMovies,
+          title: 'En cines',
+          subTitle: 'Lunes 20',
+        ),
       ],
     );
   }
